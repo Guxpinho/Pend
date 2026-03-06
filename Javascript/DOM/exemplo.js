@@ -10,3 +10,16 @@ console.log(url);
 document.getElementById("caixa").style.backgroundColor = "pink";
 
 document.getElementById("alerta").classList.add("destaque");
+
+document.getElementById("alert").classList.remove("oculto");
+
+let novoParagrafo = document.createElement("p");
+novoParagrafo.textContent = "Este é um novo parágrafo criado com JavaScript.";
+document.getElementById("container").appendChild(novoParagrafo);
+let novoItem = document.createElement("li");
+// Adicionar um novo item à lista;
+novoItem.textContent = "Item novo";
+document.getElementById("lista").appendChild(novoItem)
+// Remover um elemento;
+let item = document.getElementById("item1");
+document.getElementById("lista").removeChild(item);
