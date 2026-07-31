@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix — Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>NETFLIX</h1>
+        <p class="subtitle">Crie sua conta</p>
+
+        <div class="field">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name">
+        </div>
+
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="seu@email.com" autocomplete="email">
+        </div>
+
+        <div class="field">
+            <label for="senha">Senha</label>
+            <div class="password-wrap">
+                <input type="password" id="senha" placeholder="Mínimo 6 caracteres">
+                <button type="button" id="toggleSenha" class="toggle-pw" title="Mostrar/ocultar senha">
+                    <svg id="iconOlho" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+            <p id="msgSenha" class="msg-field"></p>
+        </div>
+
+        <div class="field row2">
+            <div>
+                <label for="uf">Estado</label>
+                <select name="uf" id="uf"></select>
+            </div>
+            <div>
+                <label for="city">Cidade</label>
+                <select name="city" id="city"><option value="" disabled selected>— Selecione o estado —</option></select>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" placeholder="Rua, bairro e número">
+        </div>
+
+        <div class="field">
+            <label for="telef">Telefone</label>
+            <input type="tel" id="telef" placeholder="(11) 95586-1708" maxlength="15">
+        </div>
+
+        <button id="validar">Criar conta</button>
+
+        <p id="mensagem"></p>
+        <img  id="foto" src="https://i.pinimg.com/1200x/89/e9/33/89e9332e6c9d92960fed0d9ed9fbb590.jpg" alt="">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script1.js"></script>
+</body>
+</html>

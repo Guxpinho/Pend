@@ -1,0 +1,9 @@
+.destaque {
+    color: #ff0000;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: solid yellow 2px;
+    background-color: #ffee00;
+    width: 100px;
+    padding: 5px;
+    border-radius: 20px;
+}
