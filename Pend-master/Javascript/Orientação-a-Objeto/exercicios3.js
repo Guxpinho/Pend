@@ -38,6 +38,12 @@ console.log("Nome:", produto2.nome);
 console.log("Preço:", produto2.preço);
 console.log("Estoque:", produto2.estoque);
 console.log("--------------------------------");
+const produto3 = new Produto("Tênis", 149.90, 30);
+console.log("Produto 3:");
+console.log("Nome:", produto3.nome);
+console.log("Preço:", produto3.preço);
+console.log("Estoque:", produto3.estoque);
+console.log("--------------------------------");
 
 produto1.vender(20);
 produto1.repor(10);
