@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Web Virtual DJ · Mix Console</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <!-- topbar -->
+  <div class="topbar">
+    <div class="logo">⍟ VIRTUAL<span>DJ</span></div>
+    <div class="library-actions">
+      <input type="file" id="fileInput" multiple accept=".mp3,.wav,.ogg,.m4a,.aac" style="display:none">
+      <button class="add-btn" id="addMusicBtn">＋ ADD MUSIC</button>
+      <input class="search-box" placeholder="Search library..." id="searchLib">
+    </div>
+  </div>
+
+  <!-- main grid -->
+  <div class="main-grid" id="mainGrid">
+    <!-- DECK A -->
+    <div class="deck" id="deckA" data-deck="A">
+      <div class="deck-header"><span class="deck-label">DECK A</span><span id="bpmA">-- BPM</span></div>
+      <div class="track-meta"><div class="track-title" id="trackTitleA">—</div><div class="track-artist" id="trackArtistA">—</div></div>
+      <div class="track-stats"><span id="timeCurrentA">00:00</span><span id="timeDurationA">00:00</span></div>
+      <div class="waveform-container" id="waveformContainerA"><canvas id="waveformA"></canvas><div class="playhead" id="playheadA"></div></div>
+      <div class="jog-wheel" id="jogA">⏣</div>
+      <div class="deck-controls">
+        <button class="btn btn-play" id="playA">▶ PLAY</button>
+        <button class="btn btn-cue" id="cueA">CUE</button>
+        <button class="btn" id="resetTempoA">⟲</button>
+        <span class="tempo-display" id="tempoDisplayA">0%</span>
+      </div>
+      <div class="slider-group"><div class="slider-row"><span class="slider-label">Tempo</span><input type="range" min="-20" max="20" value="0" id="tempoA"></div></div>
+      <div class="eq-row" id="eqA">
+        <div class="eq-knob"><span>HI</span><input type="range" min="-30" max="30" value="0" data-eq="high"></div>
+        <div class="eq-knob"><span>MID</span><input type="range" min="-30" max="30" value="0" data-eq="mid"></div>
+        <div class="eq-knob"><span>LOW</span><input type="range" min="-30" max="30" value="0" data-eq="low"></div>
+      </div>
+      <div class="deck-controls">
+        <button class="btn btn-hotcue" data-cue="0">1</button><button class="btn btn-hotcue" data-cue="1">2</button>
+        <button class="btn btn-hotcue" data-cue="2">3</button><button class="btn btn-hotcue" data-cue="3">4</button>
+        <button class="btn" id="loopToggleA">⟳ OFF</button>
+        <select id="loopLenA" style="background:#050a08;color:#b0d6c2;border:1px solid #1a3d2c;border-radius:20px;padding:2px 6px;font-size:11px;">
+          <option value="1">1</option><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option>
+        </select>
+      </div>
+      <div class="slider-row"><span class="slider-label">Vol</span><input type="range" min="0" max="100" value="80" id="volA"></div>
+    </div>
+
+    <!-- MIXER -->
+    <div class="mixer" id="mixer">
+      <div class="mixer-channel"><div class="mixer-label">CH A</div>
+        <div class="eq-row"><div class="eq-knob"><span>HI</span><input type="range" min="-30" max="30" value="0" data-mixer="A" data-eq="high"></div>
+        <div class="eq-knob"><span>MID</span><input type="range" min="-30" max="30" value="0" data-mixer="A" data-eq="mid"></div>
+        <div class="eq-knob"><span>LOW</span><input type="range" min="-30" max="30" value="0" data-mixer="A" data-eq="low"></div></div>
+        <div class="slider-row"><span class="slider-label">Gain</span><input type="range" min="0" max="200" value="100" id="gainA"></div>
+      </div>
+      <div class="crossfader"><span class="mixer-label">CROSSFADER</span><input type="range" min="0" max="100" value="50" id="crossfader"></div>
+      <div class="mixer-channel"><div class="mixer-label">CH B</div>
+        <div class="eq-row"><div class="eq-knob"><span>HI</span><input type="range" min="-30" max="30" value="0" data-mixer="B" data-eq="high"></div>
+        <div class="eq-knob"><span>MID</span><input type="range" min="-30" max="30" value="0" data-mixer="B" data-eq="mid"></div>
+        <div class="eq-knob"><span>LOW</span><input type="range" min="-30" max="30" value="0" data-mixer="B" data-eq="low"></div></div>
+        <div class="slider-row"><span class="slider-label">Gain</span><input type="range" min="0" max="200" value="100" id="gainB"></div>
+      </div>
+      <div class="master-vol"><span class="mixer-label">MASTER</span><input type="range" min="0" max="100" value="80" id="masterVol"></div>
+    </div>
+
+    <!-- DECK B -->
+    <div class="deck" id="deckB" data-deck="B">
+      <div class="deck-header"><span class="deck-label">DECK B</span><span id="bpmB">-- BPM</span></div>
+      <div class="track-meta"><div class="track-title" id="trackTitleB">—</div><div class="track-artist" id="trackArtistB">—</div></div>
+      <div class="track-stats"><span id="timeCurrentB">00:00</span><span id="timeDurationB">00:00</span></div>
+      <div class="waveform-container" id="waveformContainerB"><canvas id="waveformB"></canvas><div class="playhead" id="playheadB"></div></div>
+      <div class="jog-wheel" id="jogB">⏣</div>
+      <div class="deck-controls">
+        <button class="btn btn-play" id="playB">▶ PLAY</button>
+        <button class="btn btn-cue" id="cueB">CUE</button>
+        <button class="btn" id="resetTempoB">⟲</button>
+        <span class="tempo-display" id="tempoDisplayB">0%</span>
+      </div>
+      <div class="slider-group"><div class="slider-row"><span class="slider-label">Tempo</span><input type="range" min="-20" max="20" value="0" id="tempoB"></div></div>
+      <div class="eq-row" id="eqB">
+        <div class="eq-knob"><span>HI</span><input type="range" min="-30" max="30" value="0" data-eq="high"></div>
+        <div class="eq-knob"><span>MID</span><input type="range" min="-30" max="30" value="0" data-eq="mid"></div>
+        <div class="eq-knob"><span>LOW</span><input type="range" min="-30" max="30" value="0" data-eq="low"></div>
+      </div>
+      <div class="deck-controls">
+        <button class="btn btn-hotcue" data-cue="0">1</button><button class="btn btn-hotcue" data-cue="1">2</button>
+        <button class="btn btn-hotcue" data-cue="2">3</button><button class="btn btn-hotcue" data-cue="3">4</button>
+        <button class="btn" id="loopToggleB">⟳ OFF</button>
+        <select id="loopLenB" style="background:#050a08;color:#b0d6c2;border:1px solid #1a3d2c;border-radius:20px;padding:2px 6px;font-size:11px;">
+          <option value="1">1</option><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option>
+        </select>
+      </div>
+      <div class="slider-row"><span class="slider-label">Vol</span><input type="range" min="0" max="100" value="80" id="volB"></div>
+    </div>
+  </div>
+
+  <!-- LIBRARY -->
+  <div class="library" id="library">
+    <div class="drop-zone" id="dropZone">📂 Drag & drop audio files here or use +ADD MUSIC</div>
+    <div class="library-list" id="libraryList"></div>
+  </div>
+</div>
+<script src="virtualdj.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop API</title>
+    
+    <!-- DICA: Adicionando um pouco de CSS para visualizar a área do carrinho -->
+    <style>
+        #produto {
+            background-color: #eee;
+            padding: 10px;
+            width: 150px;
+            cursor: grab; /* Muda o mouse para uma "mãozinha" */
+            border: 1px solid #ccc;
+        }
+
+        #carrinho {
+            margin-top: 20px;
+            padding: 20px;
+            min-height: 150px; /* Garante uma área grande para soltar */
+            border: 2px dashed #666; /* Borda tracejada para indicar a zona de drop */
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplo - Drag and Drop API</h1>
+
+    <h4>Produtos</h4>
+    <!-- O produto que será arrastado -->
+    <div id="produto" draggable="true">
+        💻 Notebook
+    </div>
+
+    <hr>
+
+    <!-- A área de destino (Drop zone) -->
+    <div id="carrinho">
+        <h4>🛒 Carrinho (arraste o produto aqui)</h4>
+    </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
