@@ -42,10 +42,13 @@
       <div class="deck-controls">
         <button class="btn btn-hotcue" data-cue="0">1</button><button class="btn btn-hotcue" data-cue="1">2</button>
         <button class="btn btn-hotcue" data-cue="2">3</button><button class="btn btn-hotcue" data-cue="3">4</button>
-        <button class="btn" id="loopToggleA">⟳ OFF</button>
-        <select id="loopLenA" style="background:#050a08;color:#b0d6c2;border:1px solid #1a3d2c;border-radius:20px;padding:2px 6px;font-size:11px;">
-          <option value="1">1</option><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option>
-        </select>
+        <div class="loop-controls">
+          <button class="btn btn-loop" id="loopToggleA">⟳ OFF</button>
+          <select id="loopLenA">
+            <option value="0.25">¼</option><option value="0.5">½</option><option value="1">1</option>
+            <option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option>
+          </select>
+        </div>
       </div>
       <div class="slider-row"><span class="slider-label">Vol</span><input type="range" min="0" max="100" value="80" id="volA"></div>
     </div>
@@ -90,10 +93,13 @@
       <div class="deck-controls">
         <button class="btn btn-hotcue" data-cue="0">1</button><button class="btn btn-hotcue" data-cue="1">2</button>
         <button class="btn btn-hotcue" data-cue="2">3</button><button class="btn btn-hotcue" data-cue="3">4</button>
-        <button class="btn" id="loopToggleB">⟳ OFF</button>
-        <select id="loopLenB" style="background:#050a08;color:#b0d6c2;border:1px solid #1a3d2c;border-radius:20px;padding:2px 6px;font-size:11px;">
-          <option value="1">1</option><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option>
-        </select>
+        <div class="loop-controls">
+          <button class="btn btn-loop" id="loopToggleB">⟳ OFF</button>
+          <select id="loopLenB">
+            <option value="0.25">¼</option><option value="0.5">½</option><option value="1">1</option>
+            <option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option>
+          </select>
+        </div>
       </div>
       <div class="slider-row"><span class="slider-label">Vol</span><input type="range" min="0" max="100" value="80" id="volB"></div>
     </div>

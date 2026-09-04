@@ -29,13 +29,15 @@
         this.tempo = 1.0;
         this.loopActive = false;
         this.loopStart = 0;
-        this.loopEnd = 4; // beats, placeholder
+        this.loopEnd = 4;
         this.hotCues = [null, null, null, null];
         this.cuePoint = 0;
         this.trackDuration = 0;
         this.currentTime = 0;
         this.bpm = 0;
         this.waveformData = null;
+        this.rafId = null;
+
         // connect chain: source -> gain -> eqs -> deckGain -> cross
         this.deckGain = audioCtx.createGain();
         this.deckGain.gain.value = 1.0;
@@ -85,7 +87,7 @@
         u.tempoSlider.addEventListener('input', (e) => { this.setTempo(parseFloat(e.target.value)); });
         u.resetTempo.addEventListener('click', () => { u.tempoSlider.value = 0; this.setTempo(0); });
         u.volSlider.addEventListener('input', (e) => { this.volume = parseFloat(e.target.value)/100; this.updateGain(); });
-        u.loopToggle.addEventListener('click', () => { this.loopActive = !this.loopActive; u.loopToggle.textContent = this.loopActive ? '⟳ ON' : '⟳ OFF'; });
+        u.loopToggle.addEventListener('click', () => { this.toggleLoop(); });
         u.hotcueBtns.forEach((btn, i) => { btn.addEventListener('click', () => this.handleHotcue(i)); });
         // eq
         u.eqHigh.addEventListener('input', (e) => { this.eqHigh.gain.value = parseFloat(e.target.value); });
@@ -115,12 +117,38 @@
             const deckId = el.dataset.mixer;
             const eqType = el.dataset.eq;
             const val = parseFloat(el.value);
-            if (deckId === 'A') { window.deckA[eqType === 'high' ? 'eqHigh' : eqType === 'mid' ? 'eqMid' : 'eqLow'].gain.value = val; }
-            else { window.deckB[eqType === 'high' ? 'eqHigh' : eqType === 'mid' ? 'eqMid' : 'eqLow'].gain.value = val; }
+            if (deckId === 'A') { 
+              window.deckA[eqType === 'high' ? 'eqHigh' : eqType === 'mid' ? 'eqMid' : 'eqLow'].gain.value = val; 
+            } else { 
+              window.deckB[eqType === 'high' ? 'eqHigh' : eqType === 'mid' ? 'eqMid' : 'eqLow'].gain.value = val; 
+            }
           });
         });
-        document.getElementById('gainA').addEventListener('input', (e) => { window.deckA.gainValue = parseFloat(e.target.value)/100; window.deckA.updateGain(); });
-        document.getElementById('gainB').addEventListener('input', (e) => { window.deckB.gainValue = parseFloat(e.target.value)/100; window.deckB.updateGain(); });
+        document.getElementById('gainA').addEventListener('input', (e) => { 
+          window.deckA.gainValue = parseFloat(e.target.value)/100; 
+          window.deckA.updateGain(); 
+        });
+        document.getElementById('gainB').addEventListener('input', (e) => { 
+          window.deckB.gainValue = parseFloat(e.target.value)/100; 
+          window.deckB.updateGain(); 
+        });
+      }
+
+      toggleLoop() {
+        this.loopActive = !this.loopActive;
+        this.ui.loopToggle.textContent = this.loopActive ? '⟳ ON' : '⟳ OFF';
+        this.ui.loopToggle.classList.toggle('active', this.loopActive);
+        
+        // If playing, restart with loop settings
+        if (this.isPlaying && this.audioBuffer) {
+          const wasPlaying = this.isPlaying;
+          const currentTime = this.currentTime;
+          this.stopPlayback();
+          this.currentTime = currentTime;
+          if (wasPlaying) {
+            this.play();
+          }
+        }
       }
 
       updateCrossfade() {
@@ -150,6 +178,10 @@
         this.cuePoint = 0;
         this.hotCues = [null, null, null, null];
         this.ui.hotcueBtns.forEach(b => { b.classList.remove('stored','active'); b.textContent = b.textContent; });
+        // Reset loop state
+        this.loopActive = false;
+        this.ui.loopToggle.textContent = '⟳ OFF';
+        this.ui.loopToggle.classList.remove('active');
       }
 
       generateWaveform(buffer) {
@@ -200,18 +232,33 @@
       play() {
         if (!this.audioBuffer) return;
         if (this.isPlaying) return;
+        
+        // Resume audio context if suspended
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        
         this.stopPlayback();
         const source = audioCtx.createBufferSource();
         source.buffer = this.audioBuffer;
         source.loop = this.loopActive;
+        
         if (this.loopActive) {
-          const loopLen = parseInt(this.ui.loopLen.value);
-          const beatLen = 60 / (this.bpm || 120) * 4; // 4 beats
-          const loopDuration = beatLen * loopLen / 4;
+          const loopLen = parseFloat(this.ui.loopLen.value);
+          // Calculate loop duration based on BPM and beat length
+          const bpm = this.bpm || 120;
+          const beatDuration = 60 / bpm;
+          const loopDuration = beatDuration * 4 * loopLen; // 4 beats per bar
+          
           source.loopStart = this.currentTime;
           source.loopEnd = Math.min(this.currentTime + loopDuration, this.audioBuffer.duration);
-          if (source.loopEnd > this.audioBuffer.duration) source.loopEnd = this.audioBuffer.duration;
+          
+          // If loop end is at the end of track, adjust
+          if (source.loopEnd >= this.audioBuffer.duration - 0.1) {
+            source.loopEnd = this.audioBuffer.duration;
+          }
         }
+        
         source.playbackRate.value = this.tempo;
         this.source = source;
         source.connect(this.gainNode);
@@ -233,21 +280,37 @@
         this.isPlaying = false;
         this.ui.playBtn.textContent = '▶ PLAY';
         this.ui.playBtn.classList.remove('active');
+        if (this.rafId) {
+          cancelAnimationFrame(this.rafId);
+          this.rafId = null;
+        }
       }
 
       stopPlayback() {
         if (this.source) {
-          try { this.source.stop(); } catch(e) {}
-          this.source.disconnect();
+          try { 
+            this.source.stop(); 
+            this.source.disconnect();
+          } catch(e) {}
           this.source = null;
+        }
+        if (this.rafId) {
+          cancelAnimationFrame(this.rafId);
+          this.rafId = null;
         }
       }
 
       seek(time) {
+        if (!this.audioBuffer) return;
         this.currentTime = Math.max(0, Math.min(time, this.audioBuffer.duration));
         if (this.isPlaying) {
+          const wasPlaying = this.isPlaying;
           this.stopPlayback();
-          this.play();
+          this.startOffset = this.currentTime;
+          this.startTime = audioCtx.currentTime;
+          if (wasPlaying) {
+            this.play();
+          }
         } else {
           this.updateTimeDisplay();
           this.updatePlayhead();
@@ -280,20 +343,31 @@
       }
 
       updateTimeLoop() {
-        if (!this.isPlaying) return;
+        if (!this.isPlaying) {
+          if (this.rafId) {
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+          }
+          return;
+        }
+        
         const now = audioCtx.currentTime;
         const elapsed = now - this.startTime;
         this.currentTime = this.startOffset + elapsed;
+        
         if (this.currentTime >= this.audioBuffer.duration) {
           this.pause();
           this.currentTime = this.audioBuffer.duration;
           this.updateTimeDisplay();
+          this.updatePlayhead();
           return;
         }
+        
         this.updateTimeDisplay();
         this.updatePlayhead();
         this.updateJog();
-        requestAnimationFrame(() => this.updateTimeLoop());
+        
+        this.rafId = requestAnimationFrame(() => this.updateTimeLoop());
       }
 
       updateTimeDisplay() {
@@ -309,7 +383,7 @@
 
       updateJog() {
         if (this.isPlaying) {
-          const rot = this.currentTime * 60 % 360;
+          const rot = (this.currentTime * 60) % 360;
           this.ui.jog.style.transform = `rotate(${rot}deg)`;
         }
       }
@@ -408,24 +482,35 @@
     // keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
-      const shift = e.shiftKey;
       const key = e.key.toLowerCase();
-      if (key === ' ' || key === 'space') { e.preventDefault(); if (window.deckA.isPlaying) window.deckA.pause(); else window.deckA.play(); }
+      
+      // Deck A controls
+      if (key === ' ' || key === 'space') { 
+        e.preventDefault(); 
+        if (window.deckA.isPlaying) window.deckA.pause(); 
+        else window.deckA.play(); 
+      }
       if (key === 'a') { e.preventDefault(); window.deckA.play(); }
       if (key === 's') { e.preventDefault(); window.deckA.goToCue(); }
+      
+      // Deck B controls
       if (key === 'k') { e.preventDefault(); window.deckB.play(); }
       if (key === 'l') { e.preventDefault(); window.deckB.goToCue(); }
+      
+      // Hot cues Deck A
       if (key === 'q') { e.preventDefault(); window.deckA.handleHotcue(0); }
       if (key === 'w') { e.preventDefault(); window.deckA.handleHotcue(1); }
       if (key === 'e') { e.preventDefault(); window.deckA.handleHotcue(2); }
       if (key === 'r') { e.preventDefault(); window.deckA.handleHotcue(3); }
+      
+      // Hot cues Deck B
       if (key === 'u') { e.preventDefault(); window.deckB.handleHotcue(0); }
       if (key === 'i') { e.preventDefault(); window.deckB.handleHotcue(1); }
       if (key === 'o') { e.preventDefault(); window.deckB.handleHotcue(2); }
       if (key === 'p') { e.preventDefault(); window.deckB.handleHotcue(3); }
     });
 
-    // init library with sample placeholder
+    // init library
     renderLibrary();
     console.log('🎧 Virtual DJ ready — drag files to decks!');
   })();
