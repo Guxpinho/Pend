@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in Turismo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <span class="header-icon">🌍</span>
+            <h1>Check-in Turismo</h1>
+            <p class="subtitle">Verifique sua localização e tire uma foto para o check-in.</p>
+        </div>
+
+        <!-- FORMULÁRIO -->
+        <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <div class="input-wrapper">
+                <span class="input-icon">👤</span>
+                <input type="text" id="nome" placeholder="Digite seu nome completo">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <div class="input-wrapper">
+                <span class="input-icon">📧</span>
+                <input type="email" id="email" placeholder="Digite seu e-mail">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="cpf">CPF</label>
+            <div class="input-wrapper">
+                <span class="input-icon">📄</span>
+                <input type="text" id="cpf" placeholder="Digite seu CPF (apenas números)">
+            </div>
+        </div>
+
+        <!-- BOTÃO CHECK-IN -->
+        <button class="btn-primary" id="checkin-btn">📌 Fazer Check-in</button>
+
+        <!-- ÁREA DE RESULTADO -->
+        <div id="checkin-result">
+    
+            <div class="location-section">
+                <div class="location-label">
+                    📍 Localização
+                    <span class="location-spinner" id="location-spinner"></span>
+                </div>
+                <p id="location">Aguardando localização...</p>
+                <img id="erro-imagem" src="" alt="Erro de localização" style="display: none;">
+            </div>
+
+  
+            <div class="camera-section">
+                <video id="camera" autoplay playsinline></video>
+                <div class="camera-overlay"></div>
+            </div>
+
+            <button class="btn-capture" id="capture-btn">Capturar Foto</button>
+
+     
+            <div class="photo-result">
+                <span class="label">📸 Foto Capturada</span>
+                <img id="foto-capturada" alt="Sua foto">
+            </div>
+
+       
+            <canvas id="photo" style="display: none;"></canvas>
+        </div>
+    </div>
+
+    <!-- TOAST (notificações) -->
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toast-title">Sucesso!</div>
+        <div class="toast-message" id="toast-message">Operação realizada com sucesso.</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

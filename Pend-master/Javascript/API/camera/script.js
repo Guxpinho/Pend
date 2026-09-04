@@ -7,4 +7,5 @@ navigator.mediaDevices.getUserMedia({
 })
 .catch(function (error) {
     console.log("Erro ao acessar a câmera: ", error);
+    
 })
