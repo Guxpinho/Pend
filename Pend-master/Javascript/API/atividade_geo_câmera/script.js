@@ -3,7 +3,27 @@ let email = document.querySelector("#email");
 let cpf = document.querySelector("#cpf");
 let checkinBtn = document.querySelector("#checkin-btn");
 let checkinResult = document.querySelector("#checkin-result");
+const video = document.querySelector('#camera');
+const canvas = document.querySelector('#canvas');
+const botao = document.querySelector('#botao');
+const foto = document.querySelector('#foto');
 
+botao.addEventListener('click', function () {
+
+    canvas.width = video.clientWidth;
+    canvas.height = video.clientHeight;
+
+    const contexto = canvas.getContext('2d');
+
+    contexto.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+    foto.src = canvas.toDataURL('image/png');
+});
 // Máscara corrigida para CPF (até 11 dígitos com pontuação completa)
 cpf.addEventListener('input', function () {
     let v = cpf.value.replace(/\D/g, '');
