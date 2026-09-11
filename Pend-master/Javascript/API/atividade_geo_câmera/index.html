@@ -43,8 +43,8 @@
         <!-- BOTÃO CHECK-IN -->
         <button class="btn-primary" id="checkin-btn">📌 Fazer Check-in</button>
 
-        <!-- ÁREA DE RESULTADO -->
-        <div id="checkin-result">
+        <!-- ÁREA DE RESULTADO (Aparece após o clique) -->
+        <div id="checkin-result" style="display: none;">
     
             <div class="location-section">
                 <div class="location-label">
@@ -55,22 +55,21 @@
                 <img id="erro-imagem" src="" alt="Erro de localização" style="display: none;">
             </div>
 
-  
             <div class="camera-section">
                 <video id="camera" autoplay playsinline></video>
                 <div class="camera-overlay"></div>
             </div>
 
-            <button class="btn-capture" id="capture-btn">Capturar Foto</button>
+            <!-- Botão de capturar foto ligado ao ID correto -->
+            <button class="btn-capture" id="botao">Tirar Foto</button>
 
-     
             <div class="photo-result">
                 <span class="label">📸 Foto Capturada</span>
-                <img id="foto-capturada" alt="Sua foto">
+                <img id="foto" alt="Sua foto">
             </div>
 
-       
-            <canvas id="photo" style="display: none;"></canvas>
+            <!-- Canvas usado para processar a imagem (fica oculto) -->
+            <canvas id="canvas" style="display: none;"></canvas>
         </div>
     </div>
 

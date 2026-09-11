@@ -3,28 +3,13 @@ let email = document.querySelector("#email");
 let cpf = document.querySelector("#cpf");
 let checkinBtn = document.querySelector("#checkin-btn");
 let checkinResult = document.querySelector("#checkin-result");
+
 const video = document.querySelector('#camera');
 const canvas = document.querySelector('#canvas');
 const botao = document.querySelector('#botao');
 const foto = document.querySelector('#foto');
 
-botao.addEventListener('click', function () {
-
-    canvas.width = video.clientWidth;
-    canvas.height = video.clientHeight;
-
-    const contexto = canvas.getContext('2d');
-
-    contexto.drawImage(
-        video,
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-    foto.src = canvas.toDataURL('image/png');
-});
-// Máscara corrigida para CPF (até 11 dígitos com pontuação completa)
+// Máscara para CPF
 cpf.addEventListener('input', function () {
     let v = cpf.value.replace(/\D/g, '');
     if (v.length > 11) v = v.slice(0, 11);
@@ -40,24 +25,24 @@ cpf.addEventListener('input', function () {
     }
 });
 
-// Ação do botão principal para iniciar a experiência
+// Ação do botão principal para iniciar o check-in, carregar a câmera e a geolocalização
 checkinBtn.addEventListener('click', function() {
     if(!nome.value || !email.value || !cpf.value) {
         alert("Por favor, preencha todos os campos antes de continuar!");
         return;
     }
 
-    // Mostra a tela de check-in
+    // Mostra a tela de resultado/check-in
     checkinResult.style.display = "block";
 
     // Ativa a Câmera
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function (stream) {
-            const video = document.querySelector('#camera');
             video.srcObject = stream;
         })
         .catch(function (error) {
             console.log("Erro ao acessar a câmera: ", error);
+            alert("Não foi possível acessar a câmera. Verifique as permissões.");
         });
 
     // Pega a Geolocalização
@@ -67,14 +52,10 @@ checkinBtn.addEventListener('click', function() {
             let lon = position.coords.longitude;
             let acc = position.coords.accuracy;
             
-            console.log("latitude:", lat);
-            console.log("longitude:", lon);
-            console.log("precisão:", acc);
-
             document.querySelector("#location").innerText = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)} (Precisão: ${acc.toFixed(1)}m)`;
         },
         function (error){
-            console.log("não foi possivel obter a localização: ", error);
+            console.log("Não foi possível obter a localização: ", error);
             const imgElement = document.getElementById("erro-imagem");
             imgElement.src = "img/loca.jpg"; 
             imgElement.style.display = "block";
@@ -83,21 +64,27 @@ checkinBtn.addEventListener('click', function() {
     );
 });
 
-// Funcionalidade extra: Botão para capturar a foto da câmera
-document.querySelector("#capture-btn").addEventListener('click', function() {
-    const video = document.querySelector('#camera');
-    const canvas = document.querySelector('#photo');
-    const fotoCapturada = document.querySelector('#foto-capturada');
+// Ação do botão de tirar foto usando o Canvas
+botao.addEventListener('click', function () {
+    if (!video.srcObject) {
+        alert("A câmera precisa estar ativa para tirar a foto!");
+        return;
+    }
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth || video.clientWidth;
+    canvas.height = video.videoHeight || video.clientHeight;
+
+    const contexto = canvas.getContext('2d');
+
+    contexto.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
     
-    let context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-    let dataUrl = canvas.toDataURL('img/png');
-    fotoCapturada.src = dataUrl;
-    fotoCapturada.style.display = 'block';
-    
+    // Joga a imagem capturada para a tag <img>
+    foto.src = canvas.toDataURL('image/png');
     alert("Foto capturada com sucesso!");
 });
