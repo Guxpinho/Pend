@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu resultado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container result-page no-gay-page">
+        <section class="hero">
+            <div class="tag">Seu gênero foi registrado</div>
+            <h1><span id="usuarioNome">Você</span>, o gênero identificado foi:</h1>
+            <p>
+                Este formulário usa o que foi informado diretamente pela pessoa. O resultado fala sobre gênero e não sobre orientação sexual.
+            </p>
+            <a class="button button-primary" href="index.html">Refazer o quiz</a>
+            <a class="button quiz-back" href="index-principal.html">Voltar ao início</a>
+        </section>
+
+        <section class="api-section">
+            <h3>📚 Conheça o mundo LGBTQIA+</h3>
+            <div id="communityResources" class="api-grid"></div>
+        </section>
+    <p id="tipoResultado" class="result-confirmation"></p>
+    </main>
+
+    <script src="script.js"></script>
+<script>
+const r = sessionStorage.getItem('resultadoScore') || 'indefinido';
+const labels = {homem:'Homem', mulher:'Mulher', trans:'Trans', 'nao-binario':'Não-binário', outro:'Outro', indefinido:'Gênero não identificado'};
+document.getElementById('tipoResultado').textContent = labels[r] || 'Resultado não classificado';
+</script>
+</body>
+</html>
