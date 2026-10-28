@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Web DJ Virtual</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #121212; color: #fff; text-align: center; }
+        .playlist { margin: 20px; padding: 10px; background: #1e1e1e; display: inline-block; cursor: grab; }
+        .deck { width: 300px; height: 200px; border: 3px dashed #444; display: inline-block; margin: 20px; vertical-align: top; background: #222; border-radius: 10px; }
+        .deck.drag-over { border-color: #00ffcc; background: #2a2a2a; }
+        .deck h3 { margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Meu Virtual DJ Web</h2>
+
+    <!-- Música de Exemplo (ou você pode usar um input file) -->
+    <div class="playlist" draggable="true" id="track1">
+        🎵 MinhaMusica.mp3
+    </div>
+
+    <div class="decks-container">
+        <!-- Deck A -->
+        <div class="deck" id="deckA" ondragover="permitirDrop(event)" ondragleave="removerDestaque(event)" ondrop="soltarMusica(event, 'A')">
+            <h3>Deck A</h3>
+            <p class="status">Solte a música aqui</p>
+            <audio id="audioA" controls style="display:none;"></audio>
+        </div>
+
+        <!-- Deck B -->
+        <div class="deck" id="deckB" ondragover="permitirDrop(event)" ondragleave="removerDestaque(event)" ondrop="soltarMusica(event, 'B')">
+            <h3>Deck B</h3>
+            <p class="status">Solte a música aqui</p>
+            <audio id="audioB" controls style="display:none;"></audio>
+        </div>
+    </div>

@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Tecnologia para você</title>
+
+    <!-- Bootstrap 5.3 via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Ícones Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #0b1120;
+            color: #f1f5f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #111827;
+            border-bottom: 1px solid #293548;
+        }
+
+        .navbar-brand {
+            color: #38bdf8 !important;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: #e2e8f0 !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #38bdf8 !important;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #111827, #172554);
+            padding: 65px 0;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .btn-tech {
+            background-color: #0284c7;
+            color: white;
+            border: none;
+        }
+
+        .btn-tech:hover {
+            background-color: #0369a1;
+            color: white;
+        }
+
+        .section-title {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .product-card {
+            background-color: #172033;
+            color: white;
+            border: 1px solid #293548;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            height: 210px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .price {
+            color: #38bdf8;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background-color: #111827;
+        }
+
+        .form-control {
+            background-color: #0b1120;
+            color: white;
+            border-color: #374151;
+        }
+
+        .form-control:focus {
+            background-color: #0b1120;
+            color: white;
+            border-color: #38bdf8;
+            box-shadow: none;
+        }
+
+        .form-control::placeholder {
+            color: #9ca3af;
+        }
+
+        footer {
+            background-color: #030712;
+            color: #9ca3af;
+        }
+
+        .carousel-item img {
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .carousel-item {
+            position: relative;
+        }
+
+        .carousel-item::after {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(3, 7, 18, 0.75), rgba(3, 7, 18, 0.1));
+            content: "";
+        }
+
+        .carousel-caption {
+            z-index: 1;
+            right: auto;
+            bottom: 3rem;
+            left: 10%;
+            max-width: 560px;
+            text-align: left;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 576px) {
+            .carousel-item img {
+                height: 260px;
+            }
+
+            .carousel-caption {
+                right: 12%;
+                bottom: 1rem;
+                left: 12%;
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.25rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">
+                <i class="bi bi-cpu"></i> TechStore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal" aria-controls="menuPrincipal"
+                    aria-expanded="false" aria-label="Abrir menu de navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#inicio">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#produtos">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. CARROSSEL BOOTSTRAP -->
+    <div id="bannerCarousel" class="carousel slide"
+         data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#bannerCarousel"
+                    data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#bannerCarousel"
+                    data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#bannerCarousel"
+                    data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1400&q=80"
+                     class="d-block w-100" alt="Equipamentos de tecnologia">
+                <div class="carousel-caption">
+                    <h2>Tecnologia para o seu dia a dia</h2>
+                    <p>Encontre os equipamentos que combinam com você.</p>
+                    <a class="btn btn-tech" href="#produtos">Ver produtos</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1400&q=80"
+                     class="d-block w-100" alt="Notebook moderno">
+                <div class="carousel-caption">
+                    <h2>Desempenho e inovação</h2>
+                    <p>Produtos para estudar, trabalhar e se divertir.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"
+                     class="d-block w-100" alt="Equipe utilizando tecnologia">
+                <div class="carousel-caption">
+                    <h2>Seu próximo nível começa aqui</h2>
+                    <p>Descubra nossa seleção de produtos.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button"
+                data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button"
+                data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+
+    <!-- 3. DESTAQUE -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold">
+                        O futuro da tecnologia está
+                        <span> aqui.</span>
+                    </h1>
+
+                    <p class="lead text-light mt-3">
+                        Descubra produtos tecnológicos que tornam
+                        sua rotina mais prática, produtiva e conectada.
+                    </p>
+
+                    <a href="#produtos" class="btn btn-tech btn-lg mt-3">
+                        Ver Produtos <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="col-lg-6">
+                    <img
+                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=80"
+                        alt="Notebook para trabalho e estudos">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CATÁLOGO DE PRODUTOS -->
+    <section id="produtos" class="py-5">
+        <div class="container">
+
+            <div class="text-center mb-5">
+                <h2 class="section-title">Nossos Produtos</h2>
+                <p class="text-secondary">
+                    Confira nossa seleção de tecnologia.
+                </p>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Produto 1 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"
+                             class="card-img-top" alt="Notebook">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Notebook Pro</h5>
+                            <p class="text-secondary">
+                                Ideal para estudos e trabalho.
+                            </p>
+                            <p class="price">R$ 3.499,90</p>
+                            <button class="btn btn-tech mt-auto"
+                                    onclick="comprar('Notebook Pro')">
+                                <i class="bi bi-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80"
+                             class="card-img-top" alt="Fone de ouvido">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Headphone Wireless</h5>
+                            <p class="text-secondary">
+                                Som de qualidade sem fios.
+                            </p>
+                            <p class="price">R$ 299,90</p>
+                            <button class="btn btn-tech mt-auto"
+                                    onclick="comprar('Headphone Wireless')">
+                                <i class="bi bi-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
+                             class="card-img-top" alt="Relógio inteligente">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Smartwatch</h5>
+                            <p class="text-secondary">
+                                Praticidade no seu pulso.
+                            </p>
+                            <p class="price">R$ 449,90</p>
+                            <button class="btn btn-tech mt-auto"
+                                    onclick="comprar('Smartwatch')">
+                                <i class="bi bi-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80"
+                             class="card-img-top" alt="Mouse de computador">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Mouse Precision</h5>
+                            <p class="text-secondary">
+                                Conforto e precisão.
+                            </p>
+                            <p class="price">R$ 129,90</p>
+                            <button class="btn btn-tech mt-auto"
+                                    onclick="comprar('Mouse Precision')">
+                                <i class="bi bi-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 5 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=700&q=80"
+                             class="card-img-top" alt="Fones de ouvido">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Fone Bluetooth</h5>
+                            <p class="text-secondary">
+                                Música em qualquer lugar.
+                            </p>
+                            <p class="price">R$ 189,90</p>
+                            <button class="btn btn-tech mt-auto"
+                                    onclick="comprar('Fone Bluetooth')">
+                                <i class="bi bi-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 6 -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card product-card">
+                        <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80"
+                             class="card-img-top" alt="Monitor de computador">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Monitor Full HD</h5>
+                            <p class="text-secondary">
+                                Mais espaço para suas tarefas.
+                            </p>
+                            <p class="price">R$ 899,90</p>
+                            <button class="btn btn-tech mt-auto"
+                                    onclick="comprar('Monitor Full HD')">
+                                <i class="bi bi-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTATO -->
+    <section id="contato" class="contact-section py-5">
+        <div class="container">
+
+            <div class="text-center mb-4">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="text-secondary">
+                    Envie sua mensagem para nossa equipe.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+
+                    <form id="formContato">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control"
+                                   id="nome" placeholder="Seu nome" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control"
+                                   id="email" placeholder="seu@email.com" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">
+                                Mensagem
+                            </label>
+                            <textarea class="form-control" id="mensagem"
+                                      rows="4" placeholder="Escreva sua mensagem"
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-tech w-100">
+                            <i class="bi bi-send"></i> Enviar mensagem
+                        </button>
+
+                        <p id="retorno" class="mt-3" role="status"></p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. RODAPÉ -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <h5 class="text-info">TechStore</h5>
+            <p class="mb-2">
+                Tecnologia, inovação e praticidade.
+            </p>
+            <p class="mb-0">
+                &copy; 2026 TechStore. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function comprar(produto) {
+            alert("Você selecionou: " + produto +
+                  ". Esta é uma demonstração de catálogo.");
+        }
+
+        document.getElementById("formContato").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+
+                document.getElementById("retorno").textContent =
+                    "Mensagem validada! Este formulário é uma demonstração.";
+
+                this.reset();
+            }
+        );
+    </script>
+
+</body>
+</html>

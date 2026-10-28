@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(160deg, #1a0000 0%, #000 60%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.card {
+    background: #fff;
+    padding: 32px 28px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 380px;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: #e50914;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+/* Campos */
+.field {
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+    background: #fafafa;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #e50914;
+    background: #fff;
+}
+
+input.valido {
+    border-color: #22a55e;
+}
+
+input.invalido {
+    border-color: #e50914;
+}
+
+/* Senha */
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap input {
+    padding-right: 42px;
+}
+
+.toggle-pw {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.toggle-pw:hover {
+    color: #e50914;
+}
+
+/* Barra de força */
+.strength-bar {
+    height: 3px;
+    background: #eee;
+    border-radius: 4px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    background: #e50914;
+    transition: width 0.35s, background 0.35s;
+}
+
+/* Mensagem de campo */
+.msg-field {
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 16px;
+    color: #e50914;
+}
+
+/* Grid estado + cidade */
+.row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Botão */
+button#validar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    background: #e50914;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button#validar:hover {
+    background: #b0070f;
+}
+
+button#validar:active {
+    transform: scale(0.98);
+}
+
+/* Mensagem final */
+#mensagem {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Foto */
+#foto {
+    display: block;
+    margin: 14px auto 0;
+    width: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+@media (max-width: 1200px) and (min-width: 768px) {
+    body {
+        /* Escolha apenas uma cor. Exemplo com o vermelho: */
+        background: #ff0000; 
+    }
+}

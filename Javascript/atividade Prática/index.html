@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>MONSTER WORLD</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="map"></div>
+
+<div id="hud">
+  <div class="who">
+    <div class="avatar" id="hudLevel">1</div>
+    <div class="info">
+      <div id="hudName">Treinador</div>
+      <small>XP <span id="hudXp">0</span> · 🪙 <span id="hudCoins">100</span> · 🐾 <span id="hudCaptured">0</span></small>
+    </div>
+  </div>
+  <nav>
+    <button onclick="openDrawer('collection')" title="Coleção">🎒</button>
+    <button onclick="openDrawer('dex')" title="Enciclopédia">📖</button>
+    <button onclick="openDrawer('inventory')" title="Inventário">📦</button>
+    <button onclick="openDrawer('profile')" title="Perfil">👤</button>
+  </nav>
+</div>
+
+<div id="bottom">
+  <button onclick="forceSpawn()">🧭 Explorar</button>
+  <button onclick="locateMe()">📍 Centralizar</button>
+  <button onclick="showToast('Modo demo — sem servidor')">ℹ️ Sobre</button>
+</div>
+
+<div id="toast"></div>
+
+<div id="landing">
+  <h1>MONSTER WORLD</h1>
+  <p>Explore o mapa, encontre criaturas lendárias, capture-as e complete sua enciclopédia. O mundo muda conforme você se move.</p>
+  <button class="btn" onclick="startGame(true)">▶ JOGAR</button>
+  <button class="btn ghost" onclick="startGame(false)">Usar localização demo</button>
+</div>
+
+<div id="encounter">
+  <div class="card">
+    <div class="rarity" id="encRarity">COMUM</div>
+    <img id="encImg" alt="" />
+    <h2 id="encName">—</h2>
+    <div class="meta">
+      Nv. <span id="encLevel">1</span> · <span id="encType">—</span> · <span id="encDist">0m</span>
+    </div>
+    <div id="captureResult"></div>
+    <div class="actions">
+      <button class="btn" id="btnCapture" onclick="doCapture()">🎯 CAPTURAR</button>
+      <button class="btn ghost" onclick="closeEncounter()">🏃 FUGIR</button>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#94a3b8">
+      Cápsulas: <span id="encCapsules">0</span> ·
+      Chance: <span id="encChance">—</span>
+    </div>
+  </div>
+</div>
+
+<div id="drawer">
+  <h2><span id="drawerTitle">Coleção</span><button class="close" onclick="closeDrawer()">✕</button></h2>
+  <div id="drawerBody"></div>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.js"></script>
+<script src="creatures.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
