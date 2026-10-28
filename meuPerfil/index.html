@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+     <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><h1 class="logo">GP</h1></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+    </ul>
+    
+    <!-- O botão precisa estar aqui e ter o id="btn-tema" -->
+    <button id="btn-tema" style="padding: 10px 15px; border-radius: 5px; cursor: pointer; border: none; background: #333; color: white; font-weight: bold; margin-left: 20px;">🌙 Modo Escuro</button>
+</nav>
+    <img src="img/guxpinho.jpg" alt="Foto de Perfil" class="profile-image">
+    <div class="container">
+        <h1 class="meuperfil">Bem-vindo ao Meu Perfil</h1>
+        <p>Meu nome é Gustavo, tenho 17 anos e sou estudante de programação do SENAI SP. Um dos meus hobbies é dançar, jogar basquete, lutar, fazer trilha quando posso, ser dj, ser recreador infantil e entre muitos outros. Amo conversar com pessoas e descobrir novas culturas. <br><br> Após concluir minha atual formação técnica em programação, busco ingressar no ensino superior em Engenharia de Software ou áreas correlatas. Meu principal objetivo é construir uma carreira internacional sólida, atuando fora do Brasil. Sou movido pelo desejo de expandir meus conhecimentos gerais, vivenciar novas culturas e aplicar soluções tecnológicas inovadoras em diferentes lugares do mundo</p>
+        <p>email-principal: gustavoguidolimpinho@gmail.com <br><br>
+              email-alternativo: gustavo.pinho5@senaisp.edu.br <br><br>
+        Telefone: (11) 95586-1708
+        </p>
+        
+    </div>
+    <hr>
+<hr style="margin: 40px 0; border: 0; border-top: 1px solid #ccc;">
+    
+    <h1 class="titulo-galeria">Algumas fotos minhas</h1>
+    
+    <div class="galeria">
+        <img src="img/imagem1.JPEG" alt="Foto 1" class="foto">
+        <img src="img/imagem2.JPEG" alt="Foto 2" class="foto">
+        <img src="img/imagem3.JPEG" alt="Foto 3" class="foto">
+        <img src="img/imagem4.JPEG" alt="Foto 4" class="foto">
+        <img src="img/imagem5.JPEG" alt="Foto 5" class="foto">
+        <img src="img/imagem6.JPEG" alt="Foto 6" class="foto">
+        <img src="img/imagem7.JPEG" alt="Foto 7" class="foto">
+        <img src="img/imagem8.JPEG" alt="Foto 8" class="foto">
+    </div>
+    <br><br><br><br><br><br><br>
+    <div class="contato-container">
+    <h2 id="contato">Entre em Contato</h2>
+    <form id="meuFormulario" action="mailto:gustavo.pinho5@senaisp.edu.br">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea><br>
+        <button type="submit">Enviar</button>
+
+    </form>
+    </div>
+
+</body>
+ <script src="script.js"></script>
+</html>

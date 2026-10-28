@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container quiz-card">
+        <h2>Questionário</h2>
+        <p class="quiz-note">O resultado respeita a sua autodeclaração. Suas experiências não definem sua orientação.</p>
+
+        <form id="formPerguntas">
+            <div class="field">
+                <label for="nome">Qual é o seu nome?</label>
+                <input type="text" id="nome" placeholder="Digite seu nome">
+            </div>
+
+            <div class="field">
+                <label for="idade">Qual é a sua idade?</label>
+                <input type="number" id="idade" placeholder="Sua idade">
+            </div>
+
+            <div class="field">
+                <label for="genero">Você é:</label>
+                <select id="genero">
+                    <option value="">Selecione</option>
+                    <option value="homem">Homem</option>
+                    <option value="mulher">Mulher</option>
+                    <option value="trans">Trans</option>
+                    <option value="nao-binario">Não-binário</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="sexualidade">Como você se descreve hoje?</label>
+                <select id="sexualidade">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Autodeclaração pessoal</option>
+                    <option value="descobrindo">Ainda estou descobrindo</option>
+                    <option value="nao-responder">Prefiro não responder</option>
+                </select>
+                <small class="field-hint">Essa escolha não define o resultado; o que vale é a descrição e o contexto que você preencher.</small>
+            </div>
+
+            <div class="field">
+                <label for="diva">Você já usou (diva) ou (divo)?</label>
+                <select id="diva">
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                    <option value="as-vezes">Às vezes</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="memes">Você é cronicamente online com memes?</label>
+                <select id="memes">
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                    <option value="as-vezes">Um pouco</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="beijo">Já beijou alguém do mesmo sexo? Se sim, foi beijo ou beijão?</label>
+                <textarea id="beijo" rows="3" placeholder="Ex: Sim, foi um beijão; não, foi só beijo; nunca aconteceu."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="parada">Já foi em uma parada gay?</label>
+                <select id="parada">
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                    <option value="quero-ir">Quero ir</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="interesse">Gosta mais de pessoas Peludas ou sem pelos?</label>
+                <select id="interesse">
+                    <option value="">Selecione</option>
+                    <option value="historias">Sem pelos</option>
+                    <option value="eventos">Peludas</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="conflito">Em uma briga, você puxa o cabelo ou dá um soco?</label>
+                <select id="conflito">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Dou socos</option>
+                    <option value="reflexao">Puxo o cabelo</option>
+                    <option value="nao-responder">Prefiro não classificar</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="lacrar">Gosta de lacrar?</label>
+                <select id="lacrar">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Gosto e muito</option>
+                    <option value="reflexao">sim monah</option>
+                    <option value="nao-responder">Não gosto</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="beach-tenis">Joga beach tennis?</label>
+                <select id="beach-tenis">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Jogo de vez em quando</option> 
+                    <option value="reflexao">Jogo frequentemente</option>
+                    <option value="nao-responder">Não jogo</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="rebolar">Rebola ouvindo música?</label>
+                <select id="rebolar">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim frequentemente</option>
+                    <option value="reflexao">Não, pois não sei</option>
+                    <option value="nao-responder">não gosto disso</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="tartaruga">Você se anima ao saber que existe uma tartaruga gay?</label>
+                <select id="tartaruga">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim muito!</option>
+                    <option value="reflexao">Não, nada a ver</option> 
+                    <option value="nao-responder">Pode ser</option>
+                </select>
+            </div>
+            
+            <div class="field">
+                <label for="lol">Gosta de jogar League of Legends?</label>
+                <select id="lol">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim frequentemente</option>
+                    <option value="reflexao">Não jogo</option>
+                    <option value="nao-responder">não, curto pouco</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="trisal">Você teria interesse em um relacionamento a três?</label>
+                <select id="trisal">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim, acho uma experiência diferente</option>
+                    <option value="reflexao">Não, pois não curto</option>
+                    <option value="nao-responder">não, pois não tenho possibilidade</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="luva">Gosta de usar luvas para treinar?</label>
+                <select id="luva">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim frequentemente</option>
+                    <option value="reflexao">Não, pois não sei</option>
+                    <option value="nao-responder">não gosto disso</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="carro-eletrico">Dirige ou gostaria de ter um carro elétrico?</label>
+                <select id="carro-eletrico">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim frequentemente</option>
+                    <option value="reflexao">Não, pois não sei</option>
+                    <option value="nao-responder">não gosto disso</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="voto">Como você prefere responder sobre política?</label>
+                <select id="voto">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sou Bolsonaro poha</option>
+                    <option value="reflexao">Sou PT Caralho</option>
+                </select>
+                <small class="field-hint">Esta resposta fica separada e não altera a orientação registrada.</small>
+            </div>
+            
+            <div class="field">
+                <label for="crossfit">Faz CrossFit?</label>
+                <select id="crossfit">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim frequentemente</option>
+                    <option value="reflexao">Não, mas gostaria</option>
+                    <option value="nao-responder">não gosto disso</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="creme">Passa creme no corpo?</label>
+                <select id="creme">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Sim frequentemente</option>
+                    <option value="reflexao">Não, pois não tenho</option>
+                    <option value="nao-responder">não gosto disso</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="piercing">Você colocaria um piercing no septo?</label>
+                <select id="piercing">
+                    <option value="">Selecione</option>
+                    <option value="autodeclaracao">Não tenho, mas gostaria</option>
+                    <option value="reflexao">Tenho</option>
+                    <option value="nao-responder">não gosto</option>
+                </select>
+            </div>
+            
+            
+            <div class="field">
+                <label for="descricao">Descreva como se sente em relação a suas atrações e experiências.</label>
+                <textarea id="descricao" rows="4" placeholder="Ex: Já me senti atraída por pessoas do mesmo sexo, tenho interesse em homens, em mulheres, etc."></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="button button-primary">Enviar</button>
+            </div>
+        </form>
+
+        <div id="resultado" class="result">
+            <strong>Resultado:</strong>
+            <span id="textoResultado"></span>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "atividade-pratica-2-ia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Questionário com validação por IA baseada exclusivamente em autodeclaração voluntária.",
+  "scripts": {"start": "node server.js"},
+  "engines": {"node": ">=18"}
+}
